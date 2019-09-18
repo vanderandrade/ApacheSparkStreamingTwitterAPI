@@ -25,9 +25,11 @@ def send_tweets_to_spark(http_resp, tcp_connection):
             tweet_text = full_tweet['text']
             print("Tweet Text: " + tweet_text)
             print ("------------------------------------------")
-            tcp_connection.send(tweet_text + '\n')
+
+            tweet_data = bytes(tweet_text + "\n", 'utf-8') 
+            tcp_connection.send(tweet_data)
         except:
-            e = sys.exc_info()[0]
+            e = sys.exc_info()
             print("Error: %s" % e)
 
     print('Just beginning :)')
