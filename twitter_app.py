@@ -4,10 +4,13 @@ import requests
 import requests_oauthlib
 import json
 
-ACCESS_TOKEN = 'YOUR_ACC1173317040708497411-eer9XsZCq07BaRdFihljfQeePZOXEeESS_TOKEN'
-ACCESS_SECRET = 'YOUR_AqIL7JKPgRLiLq2wKkqwLd7spbTJISQqgzFgejG9DK2RsICCESS_SECRET'
-CONSUMER_KEY = '5D6fUPK8JBMLzNYKIub13SUSk'
-CONSUMER_SECRET = '6Vcl5GaI0N7xwgkEhWSjnbBBjaLLdKXV2yKCncE2qYy7I7cwy6'
+
+twitterApiKeys = open('TwitterAPIkeys', 'r')
+CONSUMER_KEY = twitterApiKeys.readline().rstrip()
+CONSUMER_SECRET = twitterApiKeys.readline().rstrip()
+ACCESS_TOKEN = twitterApiKeys.readline().rstrip()
+ACCESS_SECRET = twitterApiKeys.readline().rstrip()
+
 my_auth = requests_oauthlib.OAuth1(CONSUMER_KEY, CONSUMER_SECRET,ACCESS_TOKEN, ACCESS_SECRET)
 
 def get_tweets():
@@ -32,7 +35,6 @@ def send_tweets_to_spark(http_resp, tcp_connection):
             e = sys.exc_info()
             print("Error: %s" % e)
 
-    print('Just beginning :)')
 
 TCP_IP = "localhost"
 TCP_PORT = 9009
