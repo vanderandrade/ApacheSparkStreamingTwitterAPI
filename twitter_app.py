@@ -4,7 +4,6 @@ import requests
 import requests_oauthlib
 import json
 
-
 twitterApiKeys = open('TwitterAPIkeys', 'r')
 CONSUMER_KEY = twitterApiKeys.readline().rstrip()
 CONSUMER_SECRET = twitterApiKeys.readline().rstrip()
@@ -25,7 +24,7 @@ def send_tweets_to_spark(http_resp, tcp_connection):
     for line in http_resp.iter_lines():
         try:
             full_tweet = json.loads(line)
-            tweet_text = full_tweet['text']
+            tweet_text = str(full_tweet['text'].encode("utf-8"))
             print("Tweet Text: " + tweet_text)
             print ("------------------------------------------")
 
