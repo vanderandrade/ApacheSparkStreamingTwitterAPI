@@ -1,2 +1,5 @@
-checkpoint_TwitterApp/*
+checkpoint_TwitterApp/
+spark-warehouse/
+tweets/
+.metadata
 TwitterAPIkeys
